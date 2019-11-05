@@ -1,11 +1,12 @@
-#+STARTUP: content
+#STARTUP: content
 
 Course name: Cryptography 1
 URL: https://class.coursera.org/crypto-007/class
 
 * Lectures
-** Week 1
-*** [[https://class.coursera.org/crypto-007/lecture/1][Course Overview (11 min)]]
+**Week 1**
+
+***[https://class.coursera.org/crypto-007/lecture/1] \[Course Overview (11 min)]***
 - HTTPS is actually not a protocol of its own. It's simply regular
   HTTP on top of SSL/TLS.
 - Different applications of crypthograhy:
