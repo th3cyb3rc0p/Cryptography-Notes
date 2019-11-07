@@ -77,8 +77,8 @@ TLDR’: The function is negligible if it’s less than all polynomial fractions
 The two time pad is insecure. 
 
 Example: 
-c_1 = m_1  XOR PRG(k)
-c_2 = m_2 XOR PRG(k)
+`c_1 = m_1  XOR PRG(k)
+c_2 = m_2 XOR PRG(k)`
 
 If an attacker gets c_1 and c_2, he can perform c_1 XOR c_2 = m_1 XOR m_2
 
@@ -89,9 +89,16 @@ Vulnerabilities found in Project Venona (1941-1946), MS-PPTP (Windows NT) and WE
 In disk encryption, issue of the one time pad is **malleability**. Because OTP *does not provide integrity-checking*, cipher text could be altered without the user knowing. If you know the difference between two strings, you can XOR that difference on the cipher text without knowing the key and it be changed in the cipher text without you having to know the key.
 
 ## Modern broken stream ciphers
- **RC4** (1987) - stream cipher designed to be implemented in *software*- takes a variable size seed, expands it to a broader number of bits and then generates 1 byte (of pseudorandom) per round.  Weaknesses: 1) ex. Pr[2nd byte = 0] = 2/256 if seed = 128bits and expansion to 2048bits. (256th first bytes are biased) 2) Pr[(0,0)] is getting bigger than it should after a few gigs of data. Should not be used anymore.
 
-**CSS** is a stream-cipher used for encrypting DVDs. It’s badly broken. It was designed to be implemented on *hardware* and based on a mechanism called **LFSR** (linear feedback shift register), also used for GSM encryption (A5/1,2) and Bluetooth (E0). LFSR-derived stream ciphers are all badly broken but hard to fix because implemented in hardware.
+ **RC4** (1987) - stream cipher designed to be implemented in *software*- takes a variable size seed, expands it to a broader number of bits and then generates 1 byte (of pseudorandom) per round.  Used in HTTPS and WEP.
+ 
+ - Weaknesses: 
+	1) Bias in initial output: ex. `Pr[2nd byte = 0] = 2/256` if seed = 128bits and expansion to 2048bits. (256th first bytes are biased) 
+	2) Pr[(0,0)] is getting bigger than it should after a few gigs of data. Should not be used anymore.
+	3) Related key attacks
+ 
+
+**CSS - Content scrambling system** is a stream-cipher used for encrypting DVDs. It’s badly broken. CSS was designed in the 1980’s when exportable encryption was restricted to 40-bit keys. As a result, CSS encrypts movies using a 40-bit secret key. It was designed to be implemented on *hardware* and based on a mechanism called **LFSR** (linear feedback shift register), also used for GSM encryption (A5/1,2) and Bluetooth (E0). LFSR-derived stream ciphers are all badly broken but hard to fix because implemented in hardware.
  
 LFSR is works: 
 - We have a register of n bits.
@@ -106,12 +113,12 @@ CSS can be broken in 2^17.
 
 ## Better modern stream cipher
 
-Better PRG are coming from the **eStream** project (2008) .
-PRG: {0,1}^s x R (nonce) -> {0,1}^n
+Better PRG are coming from the **eStream** project (2008).
+PRG: `{0,1}^s x R (nonce) -> {0,1}^n`
 
 A **nonce** is a non-repeating value for a given key.
 
-E(k,m,r) = m xor PRG(k,r)
+`E(k,m,r) = m xor PRG(k,r)`
 
 The pair (k,r) is never used more than once => You can reuse the key because a nonce make the key unique. 
 
@@ -119,17 +126,27 @@ The pair (k,r) is never used more than once => You can reuse the key because a n
 
 **Salsa20** was designed to be easy to implement on both software and hardware. It was part of the eStream project and was submitted by DJB.
 
-Salsa20: {0,1}^{128 or 256} x {0,1}^64 -> {0,1}^n (max n=2^73)
+Salsa20: `{0,1}^{128 or 256} x {0,1}^64 -> {0,1}^n (max n=2^73)`
 
-Salsa20(k,r) := H(k, (r,0) ) || H(k, (r,1) ) || … 
+`Salsa20(k,r) := H(k, (r,0) ) || H(k, (r,1) ) || … `
 
-How is that function H(k, (r,i) ) defined?
+How is that function H(k, (r,i) ) defined? k --> seed; r --> nonce; i --> counter
 
+Salsa20 uses 128 and 256 bits keys.
 For the 128 version of Salsa20, we start with 64 bytes defined as in this slide. T_0…3 is defined in the Salsa20 specification. You perform 10 rounds of an invertible function h and do add all of the them word by word and you get a 64 byte output. 
 
 ![Salsa20](http://f.cl.ly/items/0841112C3n1v0Y3m1o2t/Screen%20Shot%202014-01-21%20at%2022.26.38.png)
 
 There are no significant attacks known on Salsa20. Very fast stream cipher in both software and hardware. In crypto++, RC4 = 126 MB/s and Salsa20=643 MB/s. 
+
+**Performance**:
+
+|cipher| speed1(MB/sec)|
+|------|---------------|
+|RC4 | 126 |
+|SEAL | 375 |
+|Salsa20 | 408 |
+|Sosemanuk | 727 |
 
 ## PRG Security
 
