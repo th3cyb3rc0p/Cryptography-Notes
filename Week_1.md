@@ -168,7 +168,7 @@ If the statistical test always outputs 0, it’s advantage is 0.
 
 So, can we prove it? No we can’t. ( p != np) but we have heuristic candidates.
 —
-***If PRG is predictable => PRG is insecure*** (can be proved easily by using the advantage definition of a secure PRG). If next-bit predictors cannot distinguish G from random then no statistical test can!
+***If PRG is predictable => PRG is insecure*** (can be proved easily by using the advantage definition of a secure PRG). If next-bit predictors cannot distinguish G from random then no statistical test can! 
 
 ## What is a secure cipher?
 
