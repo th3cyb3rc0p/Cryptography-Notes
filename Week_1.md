@@ -152,7 +152,11 @@ There are no significant attacks known on Salsa20. Very fast stream cipher in bo
 
 The seed space is really small compared to the universe {0,1}^n. A pseudorandom generator outputs would look indistinguishable from a uniform distribution on {0,1}^n. 
 
-One way to test if a PRG is pseudorandom we do perform statistical tests. How do we evaluate if a statistical test is good? We define the advantage of a statistical test A over the generator G: Adv[A,G] = | Pr[A(G(k))=1 ]- Pr[A(r) =1] | (between 0,1) 
+One way to test if a PRG is pseudorandom we do perform *statistical tests*.
+An algorithm that is used to distinguish a pseudo-random string G(s) from a truly random string r is called a **statistical test**.
+How do we evaluate if a statistical test is good? We define the advantage of a statistical test A over the generator G: 
+
+	`Adv[A,G] = | Pr[A(G(k))=1 ]- Pr[A(r) =1] | (between 0,1)` 
 
 If the advantage happen to be close to 1 it means that the generator behaved differently from the random distribution. This statistical test can distinguish the difference from random. If the advantage is close to 0, A can not distinguish the generator from random. 
 
@@ -160,11 +164,11 @@ The test A is said to break the generator if it has an advantage close to 1.
 
 If the statistical test always outputs 0, it’s advantage is 0. 
 
-We define a **secure PRG** such as, for all statistical tests A, Adv[A,G] is negligible.
+ We define a **secure PRG** such as, for all statistical tests A, Adv[A,G] is negligible.
 
 So, can we prove it? No we can’t. ( p != np) but we have heuristic candidates.
 —
-If PRG is predictable => PRG is insecure (can be proved easily by using the advantage definition of a secure PRG). If next-bit predictors cannot distinguish G from random then no statistical test can!
+***If PRG is predictable => PRG is insecure*** (can be proved easily by using the advantage definition of a secure PRG). If next-bit predictors cannot distinguish G from random then no statistical test can!
 
 ## What is a secure cipher?
 
