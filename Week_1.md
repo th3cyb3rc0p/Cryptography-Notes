@@ -176,5 +176,7 @@ We can adapt the definition of perfect secrecy from Shannon with the concept of 
 
 For every message m_0, m1 in M: E(k, m_0) is computationally indistinguishable from E(k, m_1). 
 
-A cipher is **semantically secure** if for all efficient adversary A, Adv[A, cipher] is negligible. 
+A cipher is **semantically secure** if;
+
+`for all efficient adversary A, Adv[A, cipher] is negligible. `
 
