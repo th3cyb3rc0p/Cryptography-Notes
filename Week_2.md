@@ -5,7 +5,9 @@ Examples :
 - 3DES: n=64bits, k=168 bits
 - AES: n=128bits, k = 128,192,256 bits
 
-Block ciphers are typically built by iteration with a round function. It takes as input the  round key and the message. 
+Block ciphers are typically built by iteration with a round function R(k, m). It takes as input the round key k and the message m. 
+
+![](#/images/blockcipher.jpg)
 
 Block ciphers are considerably slower than stream ciphers. (+/- 6x slower if you compare Salsa to AES)
 
