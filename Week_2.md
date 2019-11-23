@@ -7,7 +7,7 @@ Examples :
 
 Block ciphers are typically built by iteration with a round function R(k, m). It takes as input the round key k and the message m. 
 
-![](#/images/blockcipher.jpg)
+![](./images/blockcipher.jpg)
 
 Block ciphers are considerably slower than stream ciphers. (+/- 6x slower if you compare Salsa to AES)
 
