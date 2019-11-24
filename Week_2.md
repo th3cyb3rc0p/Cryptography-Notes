@@ -79,7 +79,7 @@ Decryption
 L_i = f_{i+1} (L_{i+1}) XOR R_{i+1}
 R_i = L_{i+1}
 
-![Construct Inverse](http://cl.ly/TZkE/Screen%20Shot%202014-01-26%20at%2013.42.32.png)
+![Construct Inverse](construct-inverse.png)
 
 Feistal networks are a general method for building invertible functions (block ciphers) from arbitrary functions. And it’s used in many block ciphers but not AES. 
 
@@ -90,7 +90,7 @@ f: K x {0,1}^n -> {0,1}^n a secure PRF => 3-round Feistel F: K^3 x {0,1}^{2n} ->
 f_1, … , f_1: {0,1}^32 -> {0,1}^32, f_i (x) = F{k_i, x} where k_i is a round key from the key expansion. For decryption, the algorithm is the same but you use the round keys in reverse-order. 
 F(k_i, x) is taking a 32-bit value x and a 48-bit round key k_i.
 
-![F function](http://cl.ly/TYeV/Screen%20Shot%202014-01-26%20at%2014.03.08.png)
+![F function](./images/f.png)
 
 ### S-boxes
 
