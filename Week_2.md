@@ -54,18 +54,23 @@ Security from PRF property: F(k,・) indistinguishable from a random function f(
 
 ## DES (Data Encryption Standard)
 
-- Early 1970: Horst Feistel designs Lucifer at IBM. key-len = 128 bits, block-len = 128 bits.
+- Early 1970: Horst Feistel designs Lucifer at IBM. 
+   `key-len = 128 bits, block-len = 128 bits.`
 - 1973: NBS (old name of NIST) asks for block cipher proposals. IBM submits variant of Lucifer. 
-- 1976: NBS adopts DES as a federal standard. key-len = 56 bits. block-len = 64 bits.
-Note: This is yet another example where standard bureaus do weaken cryptography. 
+- 1976: NBS adopts DES as a federal standard. 
+   `key-len = 56 bits. block-len = 64 bits.`
+    Note: This is yet another example where standard bureaus do weaken cryptography. 
 - 1997: DES broken by exhaustive search
 - 2000: NIST adopts Rijndael as AES (Advanced Encryption Standard) to replace DES.
 
 Widely deployed in banking (ACH) and commerce.
 
-### Feistel Network
-Given functions f_1, …, f_d: {0,1}^n -> {0,1}^n 
+### DES: Core Idea - Feistel Network
+Given functions `f_1, …, f_d: {0,1}^n -> {0,1}^n `
 Goal: build invertible function F:{0,1}^{2n} -> {0,1}^{2n}
+
+![](./images/des.jpg)
+
 A Feistel Network mapping a 2n bit input to 2n bit output:
 Encryption
 L_i = R_{i-1}
