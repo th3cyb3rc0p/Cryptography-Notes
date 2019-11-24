@@ -85,6 +85,7 @@ Goal: build invertible function `F:{0,1}^{2n} -> {0,1}^{2n}`
       - By repeating this step from d to 0, we have completed the inverse.
       - Because the process is so similar, this is very attractive
         because the hardware that encrypts can be used f
+   - Used in many block ciphers, although not in AES.
 
 ![](./images/des.jpg)
 
@@ -100,7 +101,7 @@ R_i = L_{i+1}
 
 Feistal networks are a general method for building invertible functions (block ciphers) from arbitrary functions. And it’s used in many block ciphers but not AES. 
 
-The Luby-Rackoff Theorem proves that if I take a secure PRF and let it go through 3 rounds of a Feistal network, the result is a secure PRP. Formally
+The Luby-Rackoff Theorem proves that if you take a secure PRF and let it go through 3 rounds of a Feistal network, the result is a secure PRP. Formally
 f: K x {0,1}^n -> {0,1}^n a secure PRF => 3-round Feistel F: K^3 x {0,1}^{2n} -> {0,1}^{2n} is a secure PRP. 
 
 ### DES is a 16 round Feistel network
