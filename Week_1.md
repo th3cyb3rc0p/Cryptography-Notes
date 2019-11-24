@@ -1,8 +1,11 @@
 # Crypto notes - Stanford
 
 1. [History](#history)
-2. [Discrete Probability](#discreet_probability)
-3. [Stream Ciphers](#stream_ciphers)
+2. [Discrete Probability](#discrete-probability)
+	+ [Birthday paradox](#birthday-paradox)
+3. [Stream Ciphers](#stream-ciphers)
+	+ [Information theoretic security ](#information-theoretic-security )
+
 
 
 
