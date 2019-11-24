@@ -48,19 +48,18 @@ Key property: parallelizable
 
 Security from PRF property: F(k,・) indistinguishable from a random function f(・)
 
-*Summary:
-*- Block cipher basically maps n-bits of input to n bit of outputs
-*- Built by Iteration
-*
+*Summary:*
+*- Block cipher basically maps n-bits of input to n bit of outputs*
+*- Built by Iteration*
 
 ## DES (Data Encryption Standard)
 
-Early 1970: Horst Feistel designs Lucifer at IBM. key-len = 128 bits, block-len = 128 bits.
-1973: NBS (old name of NIST) asks for block cipher proposals. IBM submits variant of Lucifer. 
-1976: NBS adopts DES as a federal standard. key-len = 56 bits. block-len = 64 bits.
+- Early 1970: Horst Feistel designs Lucifer at IBM. key-len = 128 bits, block-len = 128 bits.
+- 1973: NBS (old name of NIST) asks for block cipher proposals. IBM submits variant of Lucifer. 
+- 1976: NBS adopts DES as a federal standard. key-len = 56 bits. block-len = 64 bits.
 Note: This is yet another example where standard bureaus do weaken cryptography. 
-1997: DES broken by exhaustive search
-2000: NIST adopts Rijndael as AES (Advanced Encryption Standard) to replace DES.
+- 1997: DES broken by exhaustive search
+- 2000: NIST adopts Rijndael as AES (Advanced Encryption Standard) to replace DES.
 
 Widely deployed in banking (ACH) and commerce.
 
