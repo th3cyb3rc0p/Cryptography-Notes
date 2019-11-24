@@ -171,7 +171,7 @@ One way to test if a PRG is pseudorandom we do perform *statistical tests*.
 An algorithm that is used to distinguish a pseudo-random string G(s) from a truly random string r is called a **statistical test**.
 How do we evaluate if a statistical test is good? We define the advantage of a statistical test A over the generator G: 
 
-	`Adv[A,G] = | Pr[A(G(k))=1 ]- Pr[A(r) =1] | (between 0,1)` 
+`Adv[A,G] = | Pr[A(G(k))=1 ]- Pr[A(r) =1] | (between 0,1)` 
 
 If the advantage happen to be close to 1 it means that the generator behaved differently from the random distribution. This statistical test can distinguish the difference from random. If the advantage is close to 0, A can not distinguish the generator from random. 
 
