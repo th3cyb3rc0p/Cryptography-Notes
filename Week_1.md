@@ -4,7 +4,13 @@
 2. [Discrete Probability](#discrete-probability)
 	+ [Birthday paradox](#birthday-paradox)
 3. [Stream Ciphers](#stream-ciphers)
-	+ [Information theoretic security ](#information-theoretic-security )
+	+ [Information theoretic security ](#information-theoretic-security)
+	+ [Stream Ciphers](#stream-ciphers-1)
+	+ [PRG](#prg)
+	+ [Attacks on OTP / stream ciphers](#attacks-on-otp--stream-ciphers)
+	+ [Modern broken stream ciphers](#modern-broken-stream-ciphers)
+	+ [Better modern stream cipher](#better-modern-stream-cipher)
+	+ [Let’s do some Salsa!](#lets-do-some-salsa)
 
 
 
