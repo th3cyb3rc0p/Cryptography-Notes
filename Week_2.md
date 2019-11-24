@@ -15,13 +15,13 @@ Block ciphers are rather slow compared to stream ciphers. The longer the key, th
 
 ## Pseudo Random Function (PRF)
 
-A PRF is defined over (K, X, Y) with F: K x X -> Y such  that there exists an efficient algorithm to evaluate F(k,x). 
+A PRF is defined over (K, X, Y) {key-space K, input-space X and output-space Y} with `F: K x X -> Y` such that there exists an efficient algorithm to evaluate F(k,x). 
 
 Note: A PRF doesn’t need to be revertible. 
 
 ## Pseudo Random Permutation (PRP)
 
-A PRP (block cipher) is defined over (K,X) with E: K x X -> X such that:
+A PRP (block cipher) is defined over (K,X) with `E: K x X -> X` such that:
 - Exists efficient and deterministic algorithm to evaluate E(k,x)
 - The function E(k, ・) is one-to-one.
 - Exists an efficient inversion algorithm D(k,y)
