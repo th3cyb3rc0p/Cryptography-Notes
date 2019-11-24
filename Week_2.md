@@ -164,7 +164,7 @@ There are 42 remaining bits in the key. Overall, the total attack time = 2^43 wa
 
 Lesson: A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
 
-### Quantum attacks
+### Quantum  attacks
 
 If you could build a quantum computer, a generic search problem that would be solved in O( |X| ), can be solved in O( |X|^(1/2) ) whatever the function is. 
 
