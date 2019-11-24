@@ -66,8 +66,25 @@ Security from PRF property: F(k,・) indistinguishable from a random function f(
 Widely deployed in banking (ACH) and commerce.
 
 ### DES: Core Idea - Feistel Network
+
 Given functions `f_1, …, f_d: {0,1}^n -> {0,1}^n `
-Goal: build invertible function F:{0,1}^{2n} -> {0,1}^{2n}
+Goal: build invertible function `F:{0,1}^{2n} -> {0,1}^{2n}`
+
+- Feistel network is a series of steps that follow the structure:
+   - We start with R_0 for the first Right Bit, L_0 for the first
+      Left Bit, and f_1 for the first function.
+   - We get L_1 from applying f_1 to R_0, and R_1 from XOR'ing L_0
+      with the output of f_1(R_0).
+   - We keep applying the same process until we reach R_d-1, L_d-1
+      and fd, and the output of the process (the function F) is Rd and Ld.
+   - We claim that for all arbitrary functions f_1 to f_d, the
+      outlined functiond F is invertible.
+   - We can proove this by constructing the inverse of the process:
+      - The inverse of one round of input is:
+         - R_i = L_i+1, L_i = f_i+1(L_i+1) XOR R_i+1
+      - By repeating this step from d to 0, we have completed the inverse.
+      - Because the process is so similar, this is very attractive
+        because the hardware that encrypts can be used f
 
 ![](./images/des.jpg)
 
