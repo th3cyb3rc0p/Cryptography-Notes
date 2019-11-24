@@ -80,10 +80,10 @@ Goal: build invertible function `F:{0,1}^{2n} -> {0,1}^{2n}`
    - We claim that for all arbitrary functions f_1 to f_d, the
       outlined functiond F is invertible.
    - We can proove this by constructing the inverse of the process:
-      - The inverse of one round of input is:
-         - R_i = L_i+1, L_i = f_i+1(L_i+1) XOR R_i+1
-      - By repeating this step from d to 0, we have completed the inverse.
-      - Because the process is so similar, this is very attractive
+      + The inverse of one round of input is:
+         * R_i = L_i+1, L_i = f_i+1(L_i+1) XOR R_i+1
+      + By repeating this step from d to 0, we have completed the inverse.
+      + Because the process is so similar, this is very attractive
         because the hardware that encrypts can be used f
    - Used in many block ciphers, although not in AES.
 
@@ -105,8 +105,21 @@ The Luby-Rackoff Theorem proves that if you take a secure PRF and let it go thro
 f: K x {0,1}^n -> {0,1}^n a secure PRF => 3-round Feistel F: K^3 x {0,1}^{2n} -> {0,1}^{2n} is a secure PRP. 
 
 ### DES is a 16 round Feistel network
-f_1, … , f_1: {0,1}^32 -> {0,1}^32, f_i (x) = F{k_i, x} where k_i is a round key from the key expansion. For decryption, the algorithm is the same but you use the round keys in reverse-order. 
-F(k_i, x) is taking a 32-bit value x and a 48-bit round key k_i.
+
+`f_1, … , f_1: {0,1}^32 -> {0,1}^32, f_i (x) = F{k_i, x}` where k_i is a round key from the key expansion. 
+
+We start with a 64-bit input that gets fed into a Initial Permutation, that mixes the input bits around, this then gets fed into the 16-round Feistel network, which gets fed into Final Permutation that undoes the shuffling around of IP. We are left with a 64-bit output.
+
+For decryption, the algorithm is the same but you use the round keys in reverse-order. 
+
+**The Function F(k_i, x):**
+   - takes a 32-bit value x and a 48-bit round key k_i.
+   - x gets expanded into 48 bits by duplicating and mixing
+   - This expanded x gets xor'ed with the round key
+   - The resulting 48-bits are split into eight slots of 6-bits, that get fed into eight "S-boxes".
+   - S-boxes spit out 4-bit values based on lookup tables
+   - The resulting 32-bit value goes into yet another permutator, where it gets mixed and matched around.
+   - Essentially by using different round keys, we get different, arbitrary round functions.
 
 ![F function](./images/f.png)
 
