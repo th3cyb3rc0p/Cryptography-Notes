@@ -11,8 +11,10 @@
 	+ [Modern broken stream ciphers](#modern-broken-stream-ciphers)
 	+ [Better modern stream cipher](#better-modern-stream-cipher)
 	+ [Let’s do some Salsa!](#lets-do-some-salsa)
+	+ [PRG Security](#prg-security)
+	+ [What is a Secure Cipher](#what-is-a-secure-cipher)
 
-
+-------------------------------------------------------------------------------------------------------------------
 
 
 # History
