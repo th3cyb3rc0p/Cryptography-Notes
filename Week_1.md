@@ -1,6 +1,10 @@
 # Crypto notes - Stanford
 
-From the introduction, really excited about: homographic encryption (computations on cipher text!)+ Zero-Knowledge proof (proving someone that I know p and q without revealing anything else than N)  
+1. [History](#history)
+2. [Discrete Probability](#discreet_probability)
+3. [Stream Ciphers](#stream_ciphers)
+
+
 
 # History
 
