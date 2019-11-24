@@ -112,7 +112,7 @@ We start with a 64-bit input that gets fed into a Initial Permutation, that mixe
 
 For decryption, the algorithm is the same but you use the round keys in reverse-order. 
 
-**The Function F(k_i, x):**
+#### The Function F(k_i, x):
    - takes a 32-bit value x and a 48-bit round key k_i.
    - x gets expanded into 48 bits by duplicating and mixing
    - This expanded x gets xor'ed with the round key
@@ -123,14 +123,22 @@ For decryption, the algorithm is the same but you use the round keys in reverse-
 
 ![F function](./images/f.png)
 
-### S-boxes
+#### S-boxes
 
-S-boxes are just lookup tables. If S-Boxes were linear (if the S-boxes could be written as a Matrix vector product), the entire cipher would be linear and quickly broken. If S-Boxes would be random, it would result in an insecure block cipher (key recovery after 2^24 outputs). 
+function {0,1}^6 --> {0,1}^4 
+
+S-boxes are implemented as lookup tables. 
+
+Example: a bad S-box choice
+   - There are good and bad versions of S-boxes.
+   - Mainly we don't want the S-boxes to be calculated via a linear function, because this would mean that all that DES does is xor'ing and moving bits around.
+   - If DES was wholly linear, this would mean that it's not fully random.
+   - **Choosing the S-boxes** at random would not be enough to make them secure, as the chances of them being linear would be too high. The key could be recovered after about 2^24 outputs.
 
 So what are the creators of DES advising to make S boxes lookup tables? 
-- No output bit should be close to a linear function of the input bits
-- S-boxes are 4 to 1 maps.
-- …
+   - No output bit should be close to a linear function of the input bits
+   - S-boxes are 4 to 1 maps.
+   - …
 
 ### Exhaustive search on DES
 
