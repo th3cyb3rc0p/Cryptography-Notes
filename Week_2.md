@@ -40,11 +40,18 @@ Let F: K x X -> Y be a PRF
 
 Intuition: A PRF is secure if a random function in Fun[X,Y] is indistinguishable from a random function in S_F.
 
-### PRF gives us a PRG
+### PRF gives us a PRG (PRF => PRG)
 
-Let F: K x {0,1}^n -> {0,1}^n be a secure PRF. Then the following G: K -> {0,1}^{nt} is a secure PRG: G(k) = F(k,0) || F(k,1) || … || F(k,t)
+Let `F: K x {0,1}^n -> {0,1}^n` be a secure PRF. Then the following `G: K -> {0,1}^{nt}` is a secure PRG: `G(k) = F(k,0) || F(k,1) || … || F(k,t)`
+
 Key property: parallelizable
+
 Security from PRF property: F(k,・) indistinguishable from a random function f(・)
+
+*Summary:
+*- Block cipher basically maps n-bits of input to n bit of outputs
+*- Built by Iteration
+*
 
 ## DES (Data Encryption Standard)
 
