@@ -97,7 +97,7 @@ Decryption
 L_i = f_{i+1} (L_{i+1}) XOR R_{i+1}
 R_i = L_{i+1}
 
-![](construct-inverse.png)
+![](./images/construct-inverse.png)
 
 Feistal networks are a general method for building invertible functions (block ciphers) from arbitrary functions. And it’s used in many block ciphers but not AES. 
 
