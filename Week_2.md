@@ -144,7 +144,7 @@ So what are the creators of DES advising to make S boxes lookup tables?
 
 Goal: given a few input/output pairs (m_i, c_i = E(k, m_i)), find key k. 
 
-Lemma: Suppose DES is an **ideal cipher** (2^56 random invertible functions). Then for all m,c there is at most one key k such that c = DES(k,m).
+*Lemma:* Suppose DES is an **ideal cipher** (2^56 random invertible functions). Then for all m,c there is at most one key k such that c = DES(k,m).
 
 With two input-output pairs, the probability that the key is unique is very close to one for both DES and AES. Hence, two input/output pairs are enough for exhaustive key search. 
 
