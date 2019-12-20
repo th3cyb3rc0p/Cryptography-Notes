@@ -159,13 +159,16 @@ Goal: given a few input/output pairs (m_i, c_i = E(k, m_i)), find key k.
 
 With two input-output pairs, the probability that the key is unique is very close to one for both DES and AES. Hence, two input/output pairs are enough for exhaustive key search. 
 
+**DES Challenge**
 RSA issued a challenge to break DES exhaustively:
 - 1997: Internet Distributed Search = 3 months
 - 1998: EFF machine (deep crack) = 3 days
 - 1999: combined search = 22 hours
 - 2006: COPACOBANA (FPGA) = 7 Days (cheap!)
 
-**DES is broken**
+Conclusion of the challenge was ==> 56-bit ciphers should not be used!!
+
+### Strengthening DES against ex. search
 
 How do we make DES more expensive to do exhaustive search? More rounds!
 
@@ -175,6 +178,7 @@ Triple DES is also 3x slower for encryption :(
 
 The key-size of 3DES is 3*56 bits = 168 bits but does not provide 168 bits security only 118 bits. -> Meet in the middle attack
 
+**Why not 2DES**
 For 2DES: exhaustive search is formulated as finding (k_1,k_2) such that E(k_1, E(k_2, M)) = C. A meet-in-the-middle attack is E(k_2, m) = D(k_1,c)
 
 Step 1: Build table of pairs (k0…kN ; E(k0, M)…E(KN, M)
@@ -190,23 +194,23 @@ Same attack on 3DES: Time = 2^(118), space = 2^56
 E: K x {0,1}^n —> {0,1}^n a block cipher. EX((k,1,k2,k3), m) = k_1 XOR E(k_2, m XOR k_3)
 key-length = 184 bits. Attack known in 2^120.
 
-## Implementation attacks on block ciphers
+### Implementation attacks on block ciphers
 
-### Side channel attacks
+#### Side channel attacks
 
 Measuring noise, time, power consumption for encryption and decryption.
 
-### Fault attacks
+#### Fault attacks
 
 Computing errors in the last round expose the secret key k. 
 
-### Conclusion on implementation attacks
+#### Conclusion on implementation attacks
 
 Don’t even implement these primitives yourself!
 
-## Attacks on block ciphers
+### Attacks on block ciphers
 
-### Linear and differential attacks (Linear cryptanalysis)
+#### Linear and differential attacks (Linear cryptanalysis)
 
 Given many inp/out pairs, can recover key in less than exhaustive search (2^56 for DES)
 
@@ -225,7 +229,7 @@ There are 42 remaining bits in the key. Overall, the total attack time = 2^43 wa
 
 Lesson: A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
 
-### Quantum  attacks
+#### Quantum  attacks
 
 If you could build a quantum computer, a generic search problem that would be solved in O( |X| ), can be solved in O( |X|^(1/2) ) whatever the function is. 
 
@@ -234,9 +238,9 @@ Examples:
 - AES-128 = 2^64
 - AES-256 = 2^128 
 
-## AES
+### AES
 
-### History 
+#### History 
 
 - 1997: NIST publishes request for proposal 
 - 1998: 15 submissions (5 claimed attacks)
@@ -247,7 +251,7 @@ Key sizes = 128, 192, 256 bits. Larger keys: slower but thought to be more secur
 
 Block size = 128 bits
 
-### Design
+#### Design
 
 AES is a substitution-permutation network. In a Feistal network, half of the bits are not changed in every round. In a subs-perm network, all bits are changed on every round. 
 
@@ -264,19 +268,19 @@ Overview of the round function:
 - Shift row step: We shift the second row from 1 position, third row by 2 positions and last row by 3 positions.
 - Mix column: We apply a linear transformation to each of the communes independently. 
 
-### How to use AES
+#### How to use AES
 
 If you want to send an implementation over a network. Don’t send precomputed table but algorithm to compute it. And then compute them upon receival. 
 
 AES is implemented in hardware. aesenc, aesenclast: one round of aes. aeskeygenassist, perform key expansion. 14 times faster than software. 
 
-### Attacks on AES
+#### Attacks on AES
 
 Best key recovery attack: four times better than exhaustive search. 128key => 126 key.
 
 Related key attack on AES-256: If related keys => 2^99 security! *Importance to choose keys at random*.
 
-## Building block ciphers from PRG
+### Building block ciphers from PRG
 
 Can we build a PRF from a PRG? 
 
@@ -288,7 +292,7 @@ If G is a secure PRG, then F is a secure PRF on {0,1}^n => Not used in expanded 
 
 Thanks to the Luby-Rackoff theorem, we know that we can thus make a secure PRP with a 3-round Feistal network.
 
-## Notes and review
+### Notes and review
 
 A block cipher maps n bits of input to n bits of output. 
 
@@ -302,7 +306,7 @@ When X is large, the ratio will be negligible.
 
 From now on, we consider AES or 3DES as secure PRPs.
 
-## Security for one-time key
+### Security for one-time key
 
 Let’s start with a threat model (one-time keys) defined as follows:
 - Adversary’s power: Adv sees only one cipher text
@@ -311,7 +315,7 @@ Let’s start with a threat model (one-time keys) defined as follows:
 Reminder: semantic security for a one-time key. The attacker, if given c_0 and c_1 and m_0 and m_1 can’t know which one is the result of what message. 
 Adv_{SS} [A, OTP] = | Pr[ EXP(0)=1 ] - Pr[ EXP(1) = 1 ] |
 
-## Security for many-time key
+### Security for many-time key
 
 Why? Many applications: Filesystems or IPSec, encrypts a lot of traffic with the same key. 
 
@@ -331,7 +335,7 @@ So how do we fix this?
 
 2) Nonce-based encryption. We define a **nonce** as a value that changes from message to message. The pair (k, n) should NEVER be used more than once. The nonce can conveniently be a counter (if in-order and reliable transmission channel, no need to transmit nonce). If same key used by multiple machines, the nonce space needs to be very big and picked at random (easier to implement a “stateless” protocol)
 
-## Modes of operation
+### Modes of operation
 
 Goal: Build a secure encryption from a secure PRP
 
