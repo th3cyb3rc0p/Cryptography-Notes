@@ -198,42 +198,48 @@ key-length = 184 bits. Attack known in 2^120.
 ### Attacks on the implementation of the block ciphers
  
 #### Side channel attacks
-   - Measure time o do enc/dec
+   - Measure time to do enc/dec
    - Measuer power for enc/dec
    - Measuring noise, time, power consumption for encryption and decryption.
 
 #### Fault attacks
-
-Computing errors in the last round expose the secret key k. 
+   - Computing errors in the last round expose the secret key k. 
+   - If you can cause the hardware that decrypts/encrypts to malfunction (i.e. by heating), you might be able to get access to the cipher before the last round of the encryption process, and this can reveal the key.
 
 #### Conclusion on implementation attacks
 
-Don’t even implement these primitives yourself!
-
+   - Don’t even implement these primitives yourself!
+   
+   
 ### Attacks on block ciphers
 
 #### Linear and differential attacks (Linear cryptanalysis)
 
-Given many inp/out pairs, can recover key in less than exhaustive search (2^56 for DES)
+   Given many inp/out pairs, can recover key in less time than exhaustive search (2^56 for DES)
 
-Pr[m[i_1] XOR … XOR m[i_r] XOR c[j_j] XOR … XOR c[j_v] = k[l_1] XOR … XOR k[l_u] ] = 1/2 + epsilon
+   Pr[m[i_1] XOR … XOR m[i_r] XOR c[j_j] XOR … XOR c[j_v] = k[l_1] XOR … XOR k[l_u] ] = 1/2 + epsilon
 
-For DES, epsilon = 1/(2^(21)) because the fifth S-Box is too close to a linear function. 
+   For DES, epsilon = 1/(2^(21)) ~= 0.0000000477 because the fifth S-Box is too close to a linear function. 
 
-How can we attack it to find key bits? 
 
-Given 1/epsilon^2 random (m, c=DES(k, m) ) pairs then 
-k[l_1, … , l_u] = MAJ [ m[i_1 , … , i_r] XOR c[j_j, …,j_v] ] with probability 97.7%. 
+   **How can we attack it to find key bits?**
 
-For DES, with 2^42 inp/out pairs, you can find k[l_i, …, l_u] in time 2^42. Roughly speaking: you can find 14 = 2 +12(from the 5th S-box) key bits this way in time 2^42.
+   Given 1/epsilon^2 random (m, c=DES(k, m) ) pairs then 
+   k[l_1, … , l_u] = MAJ [ m[i_1 , … , i_r] XOR c[j_j, …,j_v] ] with probability >= 97.7%. 
 
-There are 42 remaining bits in the key. Overall, the total attack time = 2^43 way better than 2^56! Better than exhaustive search.
+   **Linear Attacks**
 
-Lesson: A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
+   - For DES, with 2^42 inp/out pairs, you can find k[l_i, …, l_u] in time 2^42. 
+   - Roughly speaking: you can find 14 = 2 +12(from the 5th S-box) key bits this way in time 2^42.
+   - we can do exhaustive search in the remain bits and find the remaining 56-14=42 bits in time 2^42. Then we can brute force the rest via exhaustive search, giving us total attack time of ~= 2^43 (<< 2^56) 
+
+   **Lesson:** A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
 
 #### Quantum  attacks
 
 If you could build a quantum computer, a generic search problem that would be solved in O( |X| ), can be solved in O( |X|^(1/2) ) whatever the function is. 
+
+This would cut down the search space: With DES: ~= 2^28, with AES-128 ~= 2^64, which would still be not secure.
 
 Examples:
 - DES = 2^28
