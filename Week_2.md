@@ -194,11 +194,13 @@ Same attack on 3DES: Time = 2^(118), space = 2^56
 E: K x {0,1}^n —> {0,1}^n a block cipher. EX((k,1,k2,k3), m) = k_1 XOR E(k_2, m XOR k_3)
 key-length = 184 bits. Attack known in 2^120.
 
-### Implementation attacks on block ciphers
 
+### Attacks on the implementation of the block ciphers
+ 
 #### Side channel attacks
-
-Measuring noise, time, power consumption for encryption and decryption.
+   - Measure time o do enc/dec
+   - Measuer power for enc/dec
+   - Measuring noise, time, power consumption for encryption and decryption.
 
 #### Fault attacks
 
