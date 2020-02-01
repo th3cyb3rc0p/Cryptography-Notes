@@ -18,7 +18,7 @@ Examples :
 
 Block ciphers are typically built by iteration with a round function R(k, m). It takes as input the round key k and the message m. The key k is expanded into 'round keys' k1, k2, ... kn. The message m is then encoded using R that stands for round function, which takes one of the round keys, and the current state of the message /mi/. This sequence of steps is applied iteratively until we reach /kn/, and the concatenation of the output of R is our cipher text.
 
-![](./images/blockcipher.jpg)
+![](/images/blockcipher.jpg)
 
 Different ciphers have different amount of rounds. For 3DES it's 48, and for AES-128 it is 10.
 
@@ -91,14 +91,14 @@ Goal: build invertible function `F:{0,1}^{2n} -> {0,1}^{2n}`
    - We claim that for all arbitrary functions f_1 to f_d, the
       outlined functiond F is invertible.
    - We can proove this by constructing the inverse of the process:
-      + The inverse of one round of input is:
+      - The inverse of one round of input is:
          * R_i = L_i+1, L_i = f_i+1(L_i+1) XOR R_i+1
-      + By repeating this step from d to 0, we have completed the inverse.
-      + Because the process is so similar, this is very attractive
+      - By repeating this step from d to 0, we have completed the inverse.
+      - Because the process is so similar, this is very attractive
         because the hardware that encrypts can be used f
    - Used in many block ciphers, although not in AES.
 
-![](./images/des.jpg)
+![](/images/des.jpg)
 
 A Feistel Network mapping a 2n bit input to 2n bit output:
 Encryption
@@ -108,7 +108,7 @@ Decryption
 L_i = f_{i+1} (L_{i+1}) XOR R_{i+1}
 R_i = L_{i+1}
 
-![](./images/construct-inverse.png)
+![](/images/construct-inverse.png)
 
 Feistal networks are a general method for building invertible functions (block ciphers) from arbitrary functions. And it’s used in many block ciphers but not AES. 
 
@@ -132,7 +132,7 @@ For decryption, the algorithm is the same but you use the round keys in reverse-
    - The resulting 32-bit value goes into yet another permutator, where it gets mixed and matched around.
    - Essentially by using different round keys, we get different, arbitrary round functions.
 
-![F function](./images/f.png)
+![F function](/images/f.png)
 
 #### S-boxes
 
@@ -215,7 +215,7 @@ key-length = 184 bits. Attack known in 2^120.
 
 #### Linear and differential attacks (Linear cryptanalysis)
 
-   Given many inp/out pairs, can recover key in less time than exhaustive search (2^56 for DES)
+   Given many input/output pairs, can recover key in less time than exhaustive search (2^56 for DES)
 
    Pr[m[i_1] XOR … XOR m[i_r] XOR c[j_j] XOR … XOR c[j_v] = k[l_1] XOR … XOR k[l_u] ] = 1/2 + epsilon
 
@@ -231,11 +231,11 @@ key-length = 184 bits. Attack known in 2^120.
 
    - For DES, with 2^42 inp/out pairs, you can find k[l_i, …, l_u] in time 2^42. 
    - Roughly speaking: you can find 14 = 2 +12(from the 5th S-box) key bits this way in time 2^42.
-   - we can do exhaustive search in the remain bits and find the remaining 56-14=42 bits in time 2^42. Then we can brute force the rest via exhaustive search, giving us total attack time of ~= 2^43 (<< 2^56) 
+   - We can do exhaustive search in the remain bits and find the remaining 56-14=42 bits in time 2^42. Then we can brute force the rest via exhaustive search, giving us total attack time of ~= 2^43 (<< 2^56) 
 
    **Lesson:** A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
 
-#### Quantum  attacks
+### Quantum  attacks
 
 If you could build a quantum computer, a generic search problem that would be solved in O( |X| ), can be solved in O( |X|^(1/2) ) whatever the function is. 
 
@@ -246,7 +246,7 @@ Examples:
 - AES-128 = 2^64
 - AES-256 = 2^128 
 
-### AES
+### Advanced Encryption Standard (AES) Block Cipher
 
 #### History 
 
@@ -255,7 +255,8 @@ Examples:
 - 1999: NIST chooses 5 finalists
 - 2000: NIST chooses Rijndael as AES (designed in Belgium)
 
-Key sizes = 128, 192, 256 bits. Larger keys: slower but thought to be more secure.
+Key sizes = 128, 192, 256 bits. 
+Larger keys: slower encryption but thought to be more secure.
 
 Block size = 128 bits
 
