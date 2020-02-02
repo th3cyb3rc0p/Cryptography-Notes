@@ -266,28 +266,30 @@ AES is a **substitution-permutation** network. In a Feistal network, half of the
 
 > AES-128 schematic 
 
-![AES-128](http://cl.ly/Tc1N/Screen%20Shot%202014-01-28%20at%2014.36.28.png)
+   ![AES-128](http://cl.ly/Tc1N/Screen%20Shot%202014-01-28%20at%2014.36.28.png)
 
 AES operates on 128 bits, a 4x4 matrix, each cell containing a byte. Then we XOR with the first round key, apply the round function, x10 and then we get the output. The keys are coming from the 16 bytes AES key using key expansion.
  
-![AES-128-RoundFunctions](http://cl.ly/TbLk/Screen%20Shot%202014-01-28%20at%2014.36.35.png)
+   ![AES-128-RoundFunctions](http://cl.ly/TbLk/Screen%20Shot%202014-01-28%20at%2014.36.35.png)
 
 Overview of the round function: 
-- Byte substitution: one byte S-Box (256 byte table). We take the current cell as an index into the lookup table, and the value is the output.
-- Shift row step: We shift the second row from 1 position, third row by 2 positions and last row by 3 positions.
-- Mix column: We apply a linear transformation to each of the communes independently. 
+- **ByteStub** (Byte substitution): one byte S-Box (256 byte table). We take the current cell as an index into the lookup table, and the value is the output.
+- **ShiftRows** step: We shift the second row from 1 position, third row by 2 positions and last row by 3 positions.
+- **MixColumns**: We apply a linear transformation to each of the communes independently. 
 
 #### How to use AES
 
 If you want to send an implementation over a network. Don’t send precomputed table but algorithm to compute it. And then compute them upon receival. 
 
-AES is implemented in hardware. aesenc, aesenclast: one round of aes. aeskeygenassist, perform key expansion. 14 times faster than software. 
+AES is implemented in hardware (Intel Westmere): 
+   + **aesenc, aesenclast**: one round of AES. 
+   + **aeskeygenassist**: performs AES key expansion. 
+   + Claim 14 times faster than OpenSSL on same hardware. 
 
 #### Attacks on AES
 
-Best key recovery attack: four times better than exhaustive search. 128key => 126 key.
-
-Related key attack on AES-256: If related keys => 2^99 security! *Importance to choose keys at random*.
+   + **Best key recovery attack**: four times better than exhaustive search. 128key => 126 key.
+   + **Related key attack on AES-256**: Given 2^99 input/output pairs from four related keys in AES-256. can recover keys in time ~2^99 *Importance is to choose keys at random*.
 
 ### Building block ciphers from PRG
 
