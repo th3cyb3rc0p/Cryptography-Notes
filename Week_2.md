@@ -262,9 +262,9 @@ Block size = 128 bits
 
 #### Design
 
-AES is a substitution-permutation network. In a Feistal network, half of the bits are not changed in every round. In a subs-perm network, all bits are changed on every round. 
+AES is a **substitution-permutation** network. In a Feistal network, half of the bits are not changed in every round. In a subs-perm network, all bits are changed on every round. 
 
-AES-128 schematic 
+> AES-128 schematic 
 
 ![AES-128](http://cl.ly/Tc1N/Screen%20Shot%202014-01-28%20at%2014.36.28.png)
 
