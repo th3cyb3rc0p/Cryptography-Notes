@@ -293,11 +293,11 @@ AES is implemented in hardware (Intel Westmere):
 
 ### Building block ciphers from PRG
 
-Can we build a PRF from a PRG? 
+Can we build a PRF(block ciphers) from a PRG? 
 
-Let’s start with a PRG G such that G:K -> K^2 be a secure PRG. 
+Let’s start with a PRG, G such that `G:K -> K^2` be a secure PRG. 
 
-Define 1-bit PRF F:Kx{0,1} -> K as F(k, x in {0,1}) = G(k)[x]
+Define 1-bit PRF (domain is only 1 bit) `F:Kx{0,1} -> K` as `F(k, x in {0,1}) = G(k)[x]`
 
 If G is a secure PRG, then F is a secure PRF on {0,1}^n => Not used in expanded mode due to performance reasons. 
 
