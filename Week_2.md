@@ -235,7 +235,7 @@ key-length = 184 bits. Attack known in 2^120.
 
    **Lesson:** A tiny bit of linearity in S_5 lead to a 2^42 time attack! NEVER DESIGN YOUR OWN BLOCK CIPHER. 
 
-### Quantum  attacks
+#### Quantum  attacks
 
 If you could build a quantum computer, a generic search problem that would be solved in O( |X| ), can be solved in O( |X|^(1/2) ) whatever the function is. 
 
@@ -246,9 +246,9 @@ Examples:
 - AES-128 = 2^64
 - AES-256 = 2^128 
 
-### Advanced Encryption Standard (AES) Block Cipher
+## Advanced Encryption Standard (AES) Block Cipher
 
-#### History 
+### History 
 
 - 1997: NIST publishes request for proposal 
 - 1998: 15 submissions (5 claimed attacks)
@@ -260,7 +260,7 @@ Larger keys: slower encryption but thought to be more secure.
 
 Block size = 128 bits
 
-#### Design
+### Design
 
 AES is a **substitution-permutation** network. In a Feistal network, half of the bits are not changed in every round. In a subs-perm network, all bits are changed on every round. 
 
@@ -277,7 +277,7 @@ Overview of the round function:
 - **ShiftRows** step: We shift the second row from 1 position, third row by 2 positions and last row by 3 positions.
 - **MixColumns**: We apply a linear transformation to each of the communes independently. 
 
-#### How to use AES
+### How to use AES
 
 If you want to send an implementation over a network. Don’t send precomputed table but algorithm to compute it. And then compute them upon receival. 
 
@@ -286,12 +286,12 @@ AES is implemented in hardware (Intel Westmere):
    + **aeskeygenassist**: performs AES key expansion. 
    + Claim 14 times faster than OpenSSL on same hardware. 
 
-#### Attacks on AES
+### Attacks on AES
 
    + **Best key recovery attack**: four times better than exhaustive search. 128key => 126 key.
    + **Related key attack on AES-256**: Given 2^99 input/output pairs from four related keys in AES-256. can recover keys in time ~2^99 *Importance is to choose keys at random*.
 
-### Building block ciphers from PRG
+## Building block ciphers from PRG
 
 Can we build a PRF(block ciphers) from a PRG? 
 
