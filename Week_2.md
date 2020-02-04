@@ -32,7 +32,7 @@
       * [Modes of operation: One time key](#modes-of-operation-one-time-key)
         + [#security-for-one-time-key](#security-for-one-time-key) 
         + [ECB (Electronic Code Book) - One time key](#ecb-electronic-code-book---one-time-key)
-          + [Deterministic counter mode from a PRF F (eg. AES) - One time key](deterministic-counter-mode-from-a-prf-f-eg-aes---one-time-key)
+          + [Deterministic counter mode from a PRF F (eg. AES) - One time key](#deterministic-counter-mode-from-a-prf-f-eg-aes---one-time-key)
         + [Security for many-time key](#security-for-many-time-key)
         + [CBC (Cipher Block Chaining with a random IV) - Many time key (CPA security)](#cbc-cipher-block-chaining-with-a-random-iv---many-time-key-cpa-security)
    
