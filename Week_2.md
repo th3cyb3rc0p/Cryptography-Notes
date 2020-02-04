@@ -1,11 +1,34 @@
 # Crypto notes - Stanford - Week 2
 
-   1. [Block Ciphers](#block-ciphers)
+  1. [Block Ciphers](#block-ciphers)
       * [Pseudo Random Function (PRF)](#pseudo-random-function-prf)
       * [Pseudo Random Permutation (PRP)](#pseudo-random-permutation-prp)
       * [Secure PRF](#secure-prf)
       * [PRF => PRG](#prf-gives-us-a-prg-prf--prg)
    2. [Data Encryption Standard](#des-data-encryption-standard)
+      * [DES: Core Idea - Feistel Network](#des-core-idea---feistel-network)
+      * [DES is a 16 round Feistel network](#des-is-a-16-round-feistel-network)
+         + [The Function F(k_i, x)]()
+         + [S-boxes]()
+      * [Exhaustive search on DES]()
+      * [Strengthening DES against ex. search]()
+         + [Method 1: Triple DES]()
+         + [Method 2: DESX]()
+      * [Attacks on the implementation of the block ciphers]()
+         + [Side channel attacks]()
+         + [Fault attacks]()
+         + [Conclusion on implementation attacks]()
+      * [Attacks on block ciphers]()
+         + [Linear and differential attacks]()
+         + [Quantum  attacks]()
+   3. [Advanced Encryption Standard (AES) Block Cipher]()
+      * [History](#history)
+      * [Design](#design)
+      * [How to use AES](#how-to-use-aes)
+      * [Attacks on AES](#attacks-on-aes)
+   4. [Building Block Ciphers from PRG]()
+      
+   
    
    
 -------------------------------------------------------------------------------------
