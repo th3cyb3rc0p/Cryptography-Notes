@@ -355,6 +355,8 @@ From now on, we consider AES or 3DES as secure PRPs.
 
 Goal: Build a secure encryption from a secure PRP
 
+The block cipher mode of operation defines the relationships between blocks encoded using the cipher. There are different modes that were created to make it more difficult for an attacker to guess the original content of the message.
+
 ### Security for one-time key
 
 Let’s start with a threat model (one-time keys) defined as follows:
@@ -366,6 +368,8 @@ Adv_{SS} [A, OTP] = | Pr[ EXP(0)=1 ] - Pr[ EXP(1) = 1 ] |
 
 
 ### ECB (Electronic Code Book) - One time key
+
+When using ECB, each block of data is encrypted separately and they are then concatenated in the original order. Parallel processing is possible since blocks do not depend on one another. There is no need for an IV. The major problem of ECB is that if the same block of data is encrypted, it will always generate the same ciphertext. This makes it easier for the attacker to guess the original data based on repeating patterns.
 
 ECB is badly broken. It works by breaking down the message into n blocks of size of the block cipher and then encrypt each of the parts individually. Issue, the attacker learns when a two segments have the same value. (if m_1 = m_2 -> c_1 = c_2)
 
@@ -403,7 +407,15 @@ So how do we fix this?
 
 ### CBC (Cipher Block Chaining with a random IV) - Many time key (CPA security)
 
+#### IV (Initialization Vector)
+
+An initialization vector is a random (or pseudorandom) fixed-size input used in encryption methods. The main purpose of an IV is starting off an encryption method. In cipher modes like Cipher Block Chaining (CBC) each block is XOR-ed with the previous block. In the first block, there is no previous block to XOR with. An Initialization Vector is used as an input to the first block to start off the process.
+
+If IV is unique for each message, it is called a **nonce**, which means that it can only be used once. A nonce should be unpredictable. It is also used to prevent attackers from decrypting all messages by guessing the IV. If you use a nonce, the same plaintext may be encrypted using the same key into different ciphertext.
+
 #### IV-based encryption
+
+When using CBC, each block is XORed with the previous ciphertext before encryption. This eliminates the problem of repeating patterns. An IV is needed to encrypt the first plaintext block. Parallel processing is not possible since the blocks are chained. There is one major disadvantage of CBC: if part of the message is garbled or lost, the remainder of the message is lost.
 
 When we start encrypting the first block, we pick a random IV (initialization vector of length one bloc).  We XOR the first message with it before encrypting. 
 IV is publicly known and prepended to the cipher text. 
@@ -432,6 +444,8 @@ If nonce is not random, it needs to be xored with first block.
 ![Nonce-based CBC](http://cl.ly/Tgje/Screen%20Shot%202014-02-01%20at%2021.47.34.png)
 
 #### Padding 
+
+Block ciphers have a specified fixed length and most of them require that the input data is a multiple of their size. It is common that the last block contains data that does not meet this requirement. In this case, padding (usually random data) is used to bring it to the required block length.
 
 In TLS, you pad the n remaining bytes with the number n. If no pad is needed, add a dummy block. 
  
