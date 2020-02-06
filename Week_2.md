@@ -394,15 +394,23 @@ When we use a key more than once, the adversary sees many cipher texts with the 
 
 **Adversary goal**: Break semantic security
 
-Semantic-security for many-time key is defined exactly as semantic security for a one-time key but he can repeat any of the messages in the challenge that the attacker can choose. ==> Chosen Plaintext attack.
+Semantic-security for many-time key is defined exactly as semantic security for a one-time key but he can repeat any of the messages in the challenge that the attacker can choose. ==> **Chosen Plaintext attack (CPA)**.
 
-All the deterministic encryption schemes we’ve seen before are broken under CPA. 
+All the deterministic encryption schemes we’ve seen before are broken under a chosen plaintext attack (CPA). 
 
 So how do we fix this?
 
-1) Randomized encryption: encrypting same message twice gives different cipher text. Ciphertext must be longer than plaintext. size(CT) = size (PT) + “#random bits”
+**1) Randomized encryption:** 
+  - encrypting same message twice gives different cipher text.
+  - Ciphertext must be longer than plaintext. 
+      > size(CT) = size (PT) + "#random bits"
+  - Random bits should always be unique in order for it to be semantically secure
 
-2) Nonce-based encryption. We define a **nonce** as a value that changes from message to message. The pair (k, n) should NEVER be used more than once. The nonce can conveniently be a counter (if in-order and reliable transmission channel, no need to transmit nonce). If same key used by multiple machines, the nonce space needs to be very big and picked at random (easier to implement a “stateless” protocol)
+**2) Nonce-based encryption:** 
+  
+  We define a *nonce* as a value that changes from message to message. The pair (k, n) {k -> key; n -> nonce} should NEVER be used more than once. A nonce should always be unique, it doesn't need to be random.
+  
+  We will lool at some examples of chosing a nonce. The nonce can conveniently be a counter (if in-order and reliable transmission channel, no need to transmit nonce). Another method of chosing a nonce could be picking a random nonce. If same key used by multiple machines, the nonce space needs to be very big and picked at random (easier to implement a “stateless” protocol). 
 
 
 ### CBC (Cipher Block Chaining with a random IV) - Many time key (CPA security)
@@ -449,7 +457,7 @@ Block ciphers have a specified fixed length and most of them require that the in
 
 In TLS, you pad the n remaining bytes with the number n. If no pad is needed, add a dummy block. 
  
-### Randomised Counter-mode (superior to CBC) 
+### Randomised Counter-mode (CTR) (superior to CBC) 
 
 Unlike CBC, randomised counter-mode doesn’t need a secure block cipher (PRP) but works with a secure PRF because we’re never going to invert the function F. 
 
