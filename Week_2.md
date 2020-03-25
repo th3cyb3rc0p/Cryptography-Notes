@@ -446,7 +446,7 @@ Cipher is not CPA secure if the IV is predictable.
 
 **Decryption Circuit for IV based encryption**
 
-![](/images/IV based decryption.JPG)
+![](/images/"IV based decryption.JPG")
 
 
 #### Nonce-based encryption
